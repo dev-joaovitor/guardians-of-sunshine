@@ -1,8 +1,8 @@
 [gd_scene load_steps=11 format=3 uid="uid://v74qxa0qykda"]
 
-[ext_resource type="Texture2D" uid="uid://ch3xdjhpxefp3" path="res://assets/bald-guy/idle.png" id="1_iyiln"]
-[ext_resource type="Texture2D" uid="uid://da43rfc53ndaj" path="res://assets/bald-guy/dancing.png" id="1_l2d5b"]
-[ext_resource type="Texture2D" uid="uid://dmnatyotqfquo" path="res://assets/bald-guy/walking.png" id="2_s451j"]
+[ext_resource type="Texture2D" uid="uid://ch3xdjhpxefp3" path="res://assets/sprites/bald-guy/idle.png" id="1_iyiln"]
+[ext_resource type="Texture2D" uid="uid://da43rfc53ndaj" path="res://assets/sprites/bald-guy/dancing.png" id="1_l2d5b"]
+[ext_resource type="Texture2D" uid="uid://dmnatyotqfquo" path="res://assets/sprites/bald-guy/walking.png" id="2_s451j"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wdvd2"]
 atlas = ExtResource("1_l2d5b")

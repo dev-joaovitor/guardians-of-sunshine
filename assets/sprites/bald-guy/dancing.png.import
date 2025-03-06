@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://da43rfc53ndaj"
-path="res://.godot/imported/dancing.png-5256c9ad59e0ea2af17f31718ff09044.ctex"
+path="res://.godot/imported/dancing.png-fbecec0f21fbebff860742aaaf80a383.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/bald-guy/dancing.png"
-dest_files=["res://.godot/imported/dancing.png-5256c9ad59e0ea2af17f31718ff09044.ctex"]
+source_file="res://assets/sprites/bald-guy/dancing.png"
+dest_files=["res://.godot/imported/dancing.png-fbecec0f21fbebff860742aaaf80a383.ctex"]
 
 [params]
 
