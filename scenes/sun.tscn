@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://bd080n3eipi6l"]
+
+[ext_resource type="Texture2D" uid="uid://v0o8e5y1oyhk" path="res://assets/sprites/sun/idle.png" id="1_78uvj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qlwx1"]
+atlas = ExtResource("1_78uvj")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mxbbk"]
+atlas = ExtResource("1_78uvj")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2i6l5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qlwx1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mxbbk")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="Sun" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_2i6l5")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.784153
