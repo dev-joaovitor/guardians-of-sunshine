@@ -1,0 +1,68 @@
+[gd_scene load_steps=9 format=3 uid="uid://b535twqvte1qb"]
+
+[ext_resource type="Texture2D" uid="uid://dbxby0aop3fsu" path="res://assets/sprites/bouncy-bee/walking.png" id="1_gfwka"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mbw6c"]
+atlas = ExtResource("1_gfwka")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mjxld"]
+atlas = ExtResource("1_gfwka")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wx7ai"]
+atlas = ExtResource("1_gfwka")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ha6r8"]
+atlas = ExtResource("1_gfwka")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_db1ux"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mbw6c")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mjxld")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wx7ai")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ha6r8")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3vacs"]
+radius = 6.0
+height = 14.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_81xjc"]
+radius = 20.0
+height = 42.0
+
+[node name="Bouncy Bee" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_db1ux")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="HeadCollision" type="CollisionShape2D" parent="."]
+position = Vector2(-18, -1)
+shape = SubResource("CapsuleShape2D_3vacs")
+
+[node name="BodyCollision" type="CollisionShape2D" parent="."]
+position = Vector2(6, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_81xjc")
