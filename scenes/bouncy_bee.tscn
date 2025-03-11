@@ -61,8 +61,10 @@ autoplay = "idle"
 [node name="HeadCollision" type="CollisionShape2D" parent="."]
 position = Vector2(-18, -1)
 shape = SubResource("CapsuleShape2D_3vacs")
+one_way_collision = true
 
 [node name="BodyCollision" type="CollisionShape2D" parent="."]
 position = Vector2(6, 0)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_81xjc")
+one_way_collision = true
