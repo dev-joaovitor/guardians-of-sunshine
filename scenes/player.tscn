@@ -1,8 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://v74qxa0qykda"]
+[gd_scene load_steps=20 format=3 uid="uid://v74qxa0qykda"]
 
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_0no10"]
 [ext_resource type="Texture2D" uid="uid://ch3xdjhpxefp3" path="res://assets/sprites/bald-guy/idle.png" id="1_iyiln"]
 [ext_resource type="Texture2D" uid="uid://da43rfc53ndaj" path="res://assets/sprites/bald-guy/dancing.png" id="1_l2d5b"]
 [ext_resource type="Texture2D" uid="uid://dmnatyotqfquo" path="res://assets/sprites/bald-guy/walking.png" id="2_s451j"]
+[ext_resource type="Texture2D" uid="uid://bq6ooi4njpanh" path="res://assets/sprites/bald-guy/jumping.png" id="3_e87l6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wdvd2"]
 atlas = ExtResource("1_l2d5b")
@@ -15,6 +17,34 @@ region = Rect2(32, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_75nd7"]
 atlas = ExtResource("1_l2d5b")
 region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iwe4n"]
+atlas = ExtResource("3_e87l6")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_msa6v"]
+atlas = ExtResource("3_e87l6")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hlx78"]
+atlas = ExtResource("3_e87l6")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ti0x"]
+atlas = ExtResource("3_e87l6")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ujaua"]
+atlas = ExtResource("3_e87l6")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_go6wi"]
+atlas = ExtResource("3_e87l6")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jic1i"]
+atlas = ExtResource("3_e87l6")
+region = Rect2(192, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pyqo1"]
 atlas = ExtResource("2_s451j")
@@ -50,6 +80,32 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_iwe4n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_msa6v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hlx78")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ti0x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ujaua")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_go6wi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jic1i")
+}],
+"loop": false,
+"name": &"jumping",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_pyqo1")
 }, {
 "duration": 1.0,
@@ -65,12 +121,19 @@ size = Vector2(6, 22)
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
+script = ExtResource("1_0no10")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fyufw")
-animation = &"dancing"
+animation = &"jumping"
 autoplay = "dancing"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_nc7ih")
+
+[node name="DancingTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="DancingTimer" to="." method="_on_dancing_timer_timeout"]
