@@ -1,27 +1,20 @@
 extends CanvasLayer
 
-var current_lives: int = 3
-
 @onready var lives: Node2D = $Lives
 
-func _on_killzone_kill() -> void:
+func _on_start_screen_start_game() -> void:
+	show()
+
+func _on_state_update_score(new_score: int) -> void:
+	$Score.text = str(new_score)
+
+func _on_state_update_lives(new_lives_amount: int) -> void:
 	var children := lives.get_children()
-	
-	current_lives -= 1
-	
-	if current_lives == -1:
-		
-		return get_tree().reload_current_scene()
-	
-	for c_idx in range(0,3):
+
+	for c_idx in range(0, children.size()):
 		var child := children[c_idx]
 		
-		if c_idx >= current_lives:
+		if c_idx >= new_lives_amount:
 			child.hide()
 		else:
 			child.show()
-
-
-func _on_start_screen_start_game() -> void:
-	current_lives = 3
-	show()

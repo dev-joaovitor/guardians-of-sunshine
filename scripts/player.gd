@@ -1,30 +1,43 @@
 extends CharacterBody2D
 
-const SPEED = 130.0
-const JUMP_VELOCITY = -150.0
-var direction = 0
-
-var can_play: bool = true
+const SPEED := 130.0
+const JUMP_VELOCITY := -150.0
+const ATTACK_JUMP_VELOCITY := -75.0
+var direction := 0
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var dancing_timer: Timer = $DancingTimer
 
-var initial_position
+var initial_position: Vector2
+var is_attacking: bool = false
 
 func _ready() -> void:
 	initial_position = position
 
 func _physics_process(delta: float) -> void:
-	if not can_play:
-		return
-
+	move_and_slide()
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * 0.5 * delta
+	
+	if is_attacking:
+		animated_sprite.play("attacking")
+		
+		if animated_sprite.frame == 4:
+			velocity.y = ATTACK_JUMP_VELOCITY
+		
+		await animated_sprite.animation_finished
+		
+		is_attacking = false
+		return
 
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+	
+	if Input.is_action_just_pressed("attack") and is_on_floor():
+		print("attack")
+		is_attacking = true
 
 	# Get direction
 	direction = Input.get_axis("move_left", "move_right")
@@ -58,13 +71,8 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
-	move_and_slide()
-
 func _on_dancing_timer_timeout() -> void:
+	if is_attacking:
+		return
+		
 	animated_sprite.play("dancing")
-
-func _on_killzone_kill() -> void:
-	can_play = false
-	
-func _on_death_timer_timeout() -> void:
-	can_play = true

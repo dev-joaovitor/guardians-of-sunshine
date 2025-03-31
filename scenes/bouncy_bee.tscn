@@ -2,6 +2,11 @@
 
 [ext_resource type="Script" path="res://scripts/bouncy_bee.gd" id="1_cq730"]
 [ext_resource type="Texture2D" uid="uid://dbxby0aop3fsu" path="res://assets/sprites/bouncy-bee/walking.png" id="1_gfwka"]
+[ext_resource type="Texture2D" uid="uid://dy2lw3mes5rn5" path="res://assets/sprites/bald-guy/hud-life.png" id="2_hcke8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fhvrh"]
+atlas = ExtResource("2_hcke8")
+region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mbw6c"]
 atlas = ExtResource("1_gfwka")
@@ -21,6 +26,14 @@ region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_db1ux"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fhvrh")
+}],
+"loop": true,
+"name": &"dying",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_mbw6c")
@@ -44,29 +57,11 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3vacs"]
-radius = 6.0
-height = 14.0
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_81xjc"]
-radius = 20.0
-height = 42.0
-
-[node name="Bouncy Bee" type="CharacterBody2D"]
+[node name="Bouncy Bee" type="Node2D"]
 script = ExtResource("1_cq730")
+metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_db1ux")
-animation = &"idle"
+animation = &"dying"
 autoplay = "idle"
-
-[node name="HeadCollision" type="CollisionShape2D" parent="."]
-position = Vector2(-18, -1)
-shape = SubResource("CapsuleShape2D_3vacs")
-one_way_collision = true
-
-[node name="BodyCollision" type="CollisionShape2D" parent="."]
-position = Vector2(6, 0)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_81xjc")
-one_way_collision = true
