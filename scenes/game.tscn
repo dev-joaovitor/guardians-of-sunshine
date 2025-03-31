@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://d0teb572dgdt6" path="res://scenes/coin.tscn" id="6_q1yto"]
 [ext_resource type="PackedScene" uid="uid://bmjkvsrasmo4x" path="res://scenes/hunny_bunny.tscn" id="7_8pmj8"]
 [ext_resource type="PackedScene" uid="uid://dqej61m1ydl4t" path="res://scenes/killzone.tscn" id="9_jvlr2"]
-[ext_resource type="PackedScene" uid="uid://1uppc7u3y61m" path="res://scenes/invisible_barrier.tscn" id="10_2u5ns"]
+[ext_resource type="PackedScene" path="res://scenes/invisible_barrier.tscn" id="10_2u5ns"]
 [ext_resource type="PackedScene" uid="uid://stsk8l5jegli" path="res://scenes/death_screen.tscn" id="11_4eejj"]
 [ext_resource type="PackedScene" uid="uid://xvm6y8nq4btx" path="res://scenes/start_screen.tscn" id="12_te4jh"]
 [ext_resource type="PackedScene" uid="uid://cc1s2242j2j8k" path="res://scenes/trigger_animation.tscn" id="14_2gqj1"]
@@ -223,21 +223,21 @@ position = Vector2(1150, 77)
 
 [node name="Triggers" type="Node" parent="."]
 
-[node name="PlayerTriggerAnimation" parent="Triggers" instance=ExtResource("14_2gqj1")]
+[node name="PlayerTriggerBouncyBeeAnimation" parent="Triggers" instance=ExtResource("14_2gqj1")]
 position = Vector2(648, 67)
 collision_mask = 2
 metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/PlayerTriggerAnimation"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/PlayerTriggerBouncyBeeAnimation"]
 position = Vector2(1, 0)
 shape = SubResource("SegmentShape2D_yesfp")
 
-[node name="EnemyTriggerAnimation" parent="Triggers" instance=ExtResource("14_2gqj1")]
+[node name="EnemyTriggerBouncyBeeAnimation" parent="Triggers" instance=ExtResource("14_2gqj1")]
 position = Vector2(714, 87)
 collision_layer = 4
 metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/EnemyTriggerAnimation"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/EnemyTriggerBouncyBeeAnimation"]
 position = Vector2(-1, -15)
 shape = SubResource("SegmentShape2D_5o0kd")
 
@@ -251,17 +251,22 @@ visible = false
 [node name="Start Screen" parent="." instance=ExtResource("12_te4jh")]
 visible = false
 
+[connection signal="game_over" from="State" to="Player" method="_on_state_game_over"]
 [connection signal="game_over" from="State" to="Start Screen" method="_on_state_game_over"]
+[connection signal="update_lives" from="State" to="Player" method="_on_state_update_lives"]
 [connection signal="update_lives" from="State" to="HUD" method="_on_state_update_lives"]
 [connection signal="update_lives" from="State" to="Death Screen" method="_on_state_update_lives"]
 [connection signal="update_score" from="State" to="HUD" method="_on_state_update_score"]
 [connection signal="got_killed" from="Bouncy Bee/EnemyArea" to="Bouncy Bee" method="_on_enemy_area_got_killed"]
+[connection signal="kill" from="Bouncy Bee/EnemyArea" to="State" method="_on_enemy_area_kill"]
 [connection signal="kill" from="Killzone" to="State" method="_on_killzone_kill"]
 [connection signal="kill" from="Killzone" to="Player" method="_on_killzone_kill"]
-[connection signal="kill" from="Killzone" to="Death Screen" method="_on_killzone_kill"]
-[connection signal="body_entered" from="Triggers/PlayerTriggerAnimation" to="Bouncy Bee" method="_on_trigger_animation_body_entered"]
-[connection signal="area_entered" from="Triggers/EnemyTriggerAnimation" to="Bouncy Bee" method="_on_enemy_trigger_animation_area_entered"]
+[connection signal="body_entered" from="Triggers/PlayerTriggerBouncyBeeAnimation" to="Player" method="_on_player_trigger_bouncy_bee_animation_body_entered"]
+[connection signal="body_entered" from="Triggers/PlayerTriggerBouncyBeeAnimation" to="Bouncy Bee" method="_on_trigger_animation_body_entered"]
+[connection signal="area_entered" from="Triggers/EnemyTriggerBouncyBeeAnimation" to="Player" method="_on_enemy_trigger_bouncy_bee_animation_area_entered"]
+[connection signal="area_entered" from="Triggers/EnemyTriggerBouncyBeeAnimation" to="Bouncy Bee" method="_on_enemy_trigger_animation_area_entered"]
 [connection signal="timeout" from="Death Screen/DeathTimer" to="State" method="_on_death_timer_timeout"]
 [connection signal="timeout" from="Death Screen/DeathTimer" to="Player" method="_on_death_timer_timeout"]
 [connection signal="timeout" from="Death Screen/DeathTimer" to="Death Screen" method="_on_death_timer_timeout"]
+[connection signal="start_game" from="Start Screen" to="Player" method="_on_start_screen_start_game"]
 [connection signal="start_game" from="Start Screen" to="HUD" method="_on_start_screen_start_game"]
