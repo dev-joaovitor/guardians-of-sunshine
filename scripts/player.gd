@@ -4,10 +4,20 @@ const SPEED = 130.0
 const JUMP_VELOCITY = -150.0
 var direction = 0
 
+var can_play: bool = true
+
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var dancing_timer: Timer = $DancingTimer
 
+var initial_position
+
+func _ready() -> void:
+	initial_position = position
+
 func _physics_process(delta: float) -> void:
+	if not can_play:
+		return
+
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * 0.5 * delta
@@ -52,3 +62,9 @@ func _physics_process(delta: float) -> void:
 
 func _on_dancing_timer_timeout() -> void:
 	animated_sprite.play("dancing")
+
+func _on_killzone_kill() -> void:
+	can_play = false
+	
+func _on_death_timer_timeout() -> void:
+	can_play = true

@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://stsk8l5jegli"]
+
+[ext_resource type="FontFile" uid="uid://c6yqfm6ctwkuk" path="res://assets/fonts/LowresPixel-Regular.otf" id="1_h44w3"]
+[ext_resource type="Script" path="res://scripts/death_screen.gd" id="1_p4n13"]
+
+[node name="Death Screen" type="CanvasLayer"]
+visible = false
+script = ExtResource("1_p4n13")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 1)
+
+[node name="Message" type="Label" parent="."]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.988
+offset_left = 448.0
+offset_top = 177.0
+offset_right = -448.0
+offset_bottom = -168.224
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.470588, 0.960784, 0, 1)
+theme_override_fonts/font = ExtResource("1_h44w3")
+theme_override_font_sizes/font_size = 106
+text = "You Lose"
+horizontal_alignment = 1
+autowrap_mode = 2
+uppercase = true

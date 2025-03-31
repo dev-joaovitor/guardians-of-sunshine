@@ -1,5 +1,6 @@
 extends Area2D
 
+const COIN_POINTS = 5
 
 func _on_body_entered(body: Node2D) -> void:
 		print("+1 coin")

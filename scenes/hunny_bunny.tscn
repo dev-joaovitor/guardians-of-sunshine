@@ -1,5 +1,6 @@
-[gd_scene load_steps=34 format=3 uid="uid://bmjkvsrasmo4x"]
+[gd_scene load_steps=35 format=3 uid="uid://bmjkvsrasmo4x"]
 
+[ext_resource type="Script" path="res://scripts/hunny_bunny.gd" id="1_kuh7v"]
 [ext_resource type="Texture2D" uid="uid://cq0vcyxcvt3xk" path="res://assets/sprites/hunny-bunny/emerging.png" id="1_md2cp"]
 [ext_resource type="Texture2D" uid="uid://df53iiak8bo3s" path="res://assets/sprites/hunny-bunny/idle.png" id="2_q3bdg"]
 
@@ -226,10 +227,11 @@ animations = [{
 height = 49.9734
 
 [node name="Hunny Bunny" type="CharacterBody2D"]
+script = ExtResource("1_kuh7v")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ua5ox")
-animation = &"idle"
+animation = &"emerging"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

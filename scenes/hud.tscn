@@ -1,0 +1,76 @@
+[gd_scene load_steps=6 format=3 uid="uid://byaog2sb1ani2"]
+
+[ext_resource type="FontFile" uid="uid://c6yqfm6ctwkuk" path="res://assets/fonts/LowresPixel-Regular.otf" id="1_3lo7i"]
+[ext_resource type="Script" path="res://scripts/hud.gd" id="1_bm8le"]
+[ext_resource type="Texture2D" uid="uid://dy2lw3mes5rn5" path="res://assets/sprites/bald-guy/hud-life.png" id="3_gfmgh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_erbrh"]
+draw_center = false
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.470588, 0.960784, 0, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+
+[sub_resource type="LabelSettings" id="LabelSettings_m2ceh"]
+font = ExtResource("1_3lo7i")
+font_size = 72
+font_color = Color(0.470588, 0.960784, 0, 1)
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_bm8le")
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 104.0
+color = Color(0.0511629, 0.150177, 2.40654e-08, 1)
+
+[node name="SplitBar" type="ColorRect" parent="."]
+offset_left = 376.0
+offset_top = 8.0
+offset_right = 384.0
+offset_bottom = 96.0
+color = Color(0.470588, 0.960784, 0, 1)
+
+[node name="SplitBar2" type="ColorRect" parent="."]
+offset_left = 768.0
+offset_top = 8.0
+offset_right = 776.0
+offset_bottom = 96.0
+color = Color(0.470588, 0.960784, 0, 1)
+
+[node name="Border Panel" type="Panel" parent="."]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 1144.0
+offset_bottom = 96.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_erbrh")
+
+[node name="Score" type="Label" parent="."]
+offset_left = 384.0
+offset_top = 16.0
+offset_right = 768.0
+offset_bottom = 89.0
+text = "0"
+label_settings = SubResource("LabelSettings_m2ceh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Lives" type="Node2D" parent="."]
+
+[node name="Life" type="Sprite2D" parent="Lives"]
+position = Vector2(64, 56)
+scale = Vector2(5.5, 5.5)
+texture = ExtResource("3_gfmgh")
+
+[node name="Life2" type="Sprite2D" parent="Lives"]
+position = Vector2(128, 56)
+scale = Vector2(5.5, 5.5)
+texture = ExtResource("3_gfmgh")
+
+[node name="Life3" type="Sprite2D" parent="Lives"]
+position = Vector2(192, 56)
+scale = Vector2(5.5, 5.5)
+texture = ExtResource("3_gfmgh")

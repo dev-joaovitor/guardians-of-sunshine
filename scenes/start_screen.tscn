@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://xvm6y8nq4btx"]
+
+[ext_resource type="Texture2D" uid="uid://cyue4er8doq5i" path="res://assets/sprites/start-screen-1.jpg" id="1_dkow6"]
+[ext_resource type="Script" path="res://scripts/start_screen.gd" id="1_wco40"]
+[ext_resource type="Texture2D" uid="uid://dnbs506fg3lds" path="res://assets/sprites/start-screen-2.jpg" id="2_yhnsl"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vj4ve"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_dkow6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_yhnsl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[node name="Start Screen" type="CanvasLayer"]
+script = ExtResource("1_wco40")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(0.9, 0.9)
+sprite_frames = SubResource("SpriteFrames_vj4ve")
+autoplay = "default"
+frame = 1
+frame_progress = 0.376698
