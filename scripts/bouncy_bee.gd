@@ -1,5 +1,7 @@
 extends Node2D
 
+signal toggle_animation(val: bool)
+
 const BOUNCY_BEE_POINTS = 500
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
@@ -18,6 +20,7 @@ func _on_trigger_animation_body_entered(body: Node2D) -> void:
 
 	is_idle = false
 	animated_sprite.animation = "walking"
+	toggle_animation.emit(true)
 
 func _on_enemy_area_got_killed() -> void:
 	$EnemyArea.queue_free()
@@ -31,3 +34,4 @@ func _on_enemy_trigger_animation_area_entered(area: Area2D) -> void:
 	has_animation_ran = true
 	is_idle = true
 	animated_sprite.animation = "idle"
+	toggle_animation.emit(false)
