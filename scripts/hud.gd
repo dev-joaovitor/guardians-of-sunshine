@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 @onready var lives: Node2D = $Lives
+@onready var bomba: Sprite2D = $Bomba
 
 func _on_start_screen_start_game() -> void:
 	show()

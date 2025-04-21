@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=4 uid="uid://cdbsvss4t4iy"]
+[gd_scene load_steps=40 format=4 uid="uid://cdbsvss4t4iy"]
 
 [ext_resource type="Script" path="res://scripts/state.gd" id="1_oo50k"]
 [ext_resource type="PackedScene" uid="uid://byaog2sb1ani2" path="res://scenes/hud.tscn" id="1_os4tj"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://b535twqvte1qb" path="res://scenes/bouncy_bee.tscn" id="5_uv1xh"]
 [ext_resource type="PackedScene" uid="uid://d0teb572dgdt6" path="res://scenes/coin.tscn" id="6_q1yto"]
 [ext_resource type="PackedScene" uid="uid://bmjkvsrasmo4x" path="res://scenes/hunny_bunny.tscn" id="7_8pmj8"]
+[ext_resource type="PackedScene" uid="uid://c0fmm024ns0mc" path="res://scenes/bomba.tscn" id="7_tq1t4"]
 [ext_resource type="PackedScene" uid="uid://dqej61m1ydl4t" path="res://scenes/killzone.tscn" id="9_jvlr2"]
 [ext_resource type="PackedScene" path="res://scenes/invisible_barrier.tscn" id="10_2u5ns"]
 [ext_resource type="Texture2D" uid="uid://cn2m5kc8tu64j" path="res://assets/sprites/tiles/honey-drop-1.png" id="10_w48f5"]
@@ -295,6 +296,9 @@ position = Vector2(116, 90)
 position = Vector2(1, -9)
 zoom = Vector2(4, 4)
 limit_bottom = 300
+
+[node name="Bomba" parent="Player" instance=ExtResource("7_tq1t4")]
+position = Vector2(10, -9)
 
 [node name="Bouncy Bee" parent="." instance=ExtResource("5_uv1xh")]
 position = Vector2(815, 110)

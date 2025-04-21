@@ -6,6 +6,7 @@ signal game_over
 signal toggle_movement(val: bool)
 
 var lives: int = 3
+var bombas: int = 1
 var score: int = 0
 var is_game_over: bool = false
 
@@ -29,7 +30,6 @@ func increment_score(val: int) -> void:
 func _on_death_timer_timeout() -> void:
 	if is_game_over:
 		return
-
 	if lives == -1:
 		is_game_over = true
 		game_over.emit()

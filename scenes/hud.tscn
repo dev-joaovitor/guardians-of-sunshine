@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://byaog2sb1ani2"]
+[gd_scene load_steps=7 format=3 uid="uid://byaog2sb1ani2"]
 
 [ext_resource type="FontFile" uid="uid://c6yqfm6ctwkuk" path="res://assets/fonts/LowresPixel-Regular.otf" id="1_3lo7i"]
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_bm8le"]
 [ext_resource type="Texture2D" uid="uid://dy2lw3mes5rn5" path="res://assets/sprites/bald-guy/hud-life.png" id="3_gfmgh"]
+[ext_resource type="Texture2D" uid="uid://bp5k6bicago5o" path="res://assets/sprites/bomba/icon.png" id="4_dh5ro"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_erbrh"]
 draw_center = false
@@ -61,16 +62,21 @@ vertical_alignment = 1
 [node name="Lives" type="Node2D" parent="."]
 
 [node name="Life" type="Sprite2D" parent="Lives"]
-position = Vector2(64, 56)
+position = Vector2(136, 53)
 scale = Vector2(5.5, 5.5)
 texture = ExtResource("3_gfmgh")
 
 [node name="Life2" type="Sprite2D" parent="Lives"]
-position = Vector2(128, 56)
+position = Vector2(200, 53)
 scale = Vector2(5.5, 5.5)
 texture = ExtResource("3_gfmgh")
 
 [node name="Life3" type="Sprite2D" parent="Lives"]
-position = Vector2(192, 56)
+position = Vector2(264, 53)
 scale = Vector2(5.5, 5.5)
 texture = ExtResource("3_gfmgh")
+
+[node name="Bomba" type="Sprite2D" parent="."]
+position = Vector2(816, 51)
+scale = Vector2(5.5, 5.5)
+texture = ExtResource("4_dh5ro")

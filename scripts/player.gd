@@ -11,6 +11,7 @@ var direction := 0.0
 
 var initial_position: Vector2
 var is_punching: bool = false
+var is_throwing: bool = false
 var has_bouncy_bee_animation_triggered: bool = false
 var can_move: bool = false
 
@@ -28,7 +29,7 @@ func _physics_process(delta: float) -> void:
 		animated_sprite.animation = "dancing"
 		return
 	
-	if is_punching:
+	if is_punching and not is_throwing:
 		velocity.x = 0
 		
 		animated_sprite.play("punching")
@@ -41,6 +42,16 @@ func _physics_process(delta: float) -> void:
 		
 		is_punching = false
 		return
+	
+	if is_throwing and not is_punching:
+		velocity.x = 0
+		
+		animated_sprite.play("throwing")
+		
+		await animated_sprite.animation_finished
+		
+		is_throwing = false
+		return
 
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
@@ -49,6 +60,10 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("attack") and is_on_floor():
 		print("attack")
 		is_punching = true
+	
+	if Input.is_action_just_pressed("throw") and is_on_floor():
+		print("throw")
+		is_throwing = true
 	
 	# Get direction
 	direction = Input.get_axis("move_left", "move_right")
