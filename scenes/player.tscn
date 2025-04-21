@@ -108,13 +108,13 @@ region = Rect2(128, 0, 32, 32)
 atlas = ExtResource("6_6ouwr")
 region = Rect2(160, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qx34o"]
-atlas = ExtResource("6_6ouwr")
-region = Rect2(224, 0, 32, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_qti3g"]
 atlas = ExtResource("6_6ouwr")
 region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qx34o"]
+atlas = ExtResource("6_6ouwr")
+region = Rect2(224, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_doj3v"]
 atlas = ExtResource("6_6ouwr")
@@ -257,10 +257,10 @@ animations = [{
 "texture": SubResource("AtlasTexture_wehsc")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_qx34o")
+"texture": SubResource("AtlasTexture_qti3g")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_qti3g")
+"texture": SubResource("AtlasTexture_qx34o")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_doj3v")
@@ -314,7 +314,6 @@ metadata/_edit_group_ = true
 sprite_frames = SubResource("SpriteFrames_fyufw")
 animation = &"throwing"
 autoplay = "dancing"
-frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_nc7ih")

@@ -8,6 +8,7 @@ var direction := 0.0
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var dancing_timer: Timer = $DancingTimer
+@onready var bomba: StaticBody2D = $Bomba
 
 var initial_position: Vector2
 var is_punching: bool = false
@@ -45,6 +46,9 @@ func _physics_process(delta: float) -> void:
 	
 	if is_throwing and not is_punching:
 		velocity.x = 0
+		
+		bomba.show()
+		bomba.get_node("AnimationPlayer").play("being_throwed")
 		
 		animated_sprite.play("throwing")
 		

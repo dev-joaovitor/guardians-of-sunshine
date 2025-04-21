@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=4 uid="uid://cdbsvss4t4iy"]
+[gd_scene load_steps=43 format=4 uid="uid://cdbsvss4t4iy"]
 
 [ext_resource type="Script" path="res://scripts/state.gd" id="1_oo50k"]
 [ext_resource type="PackedScene" uid="uid://byaog2sb1ani2" path="res://scenes/hud.tscn" id="1_os4tj"]
@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bmjkvsrasmo4x" path="res://scenes/hunny_bunny.tscn" id="7_8pmj8"]
 [ext_resource type="PackedScene" uid="uid://c0fmm024ns0mc" path="res://scenes/bomba.tscn" id="7_tq1t4"]
 [ext_resource type="PackedScene" uid="uid://dqej61m1ydl4t" path="res://scenes/killzone.tscn" id="9_jvlr2"]
-[ext_resource type="PackedScene" path="res://scenes/invisible_barrier.tscn" id="10_2u5ns"]
+[ext_resource type="PackedScene" uid="uid://1uppc7u3y61m" path="res://scenes/invisible_barrier.tscn" id="10_2u5ns"]
 [ext_resource type="Texture2D" uid="uid://cn2m5kc8tu64j" path="res://assets/sprites/tiles/honey-drop-1.png" id="10_w48f5"]
 [ext_resource type="PackedScene" uid="uid://stsk8l5jegli" path="res://scenes/death_screen.tscn" id="11_4eejj"]
 [ext_resource type="Texture2D" uid="uid://by4yhhds1s5um" path="res://assets/sprites/tiles/honey-drop-2.png" id="11_y05pc"]
@@ -126,6 +126,43 @@ sources/0 = SubResource("TileSetAtlasSource_6urbc")
 a = Vector2(0, -26)
 b = Vector2(0, 16)
 
+[sub_resource type="Animation" id="Animation_vtvo3"]
+resource_name = "being_throwed"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.566667, 0.7, 4.86667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(10, -9), Vector2(5, -19), Vector2(0, -18), Vector2(1, -18), Vector2(5, -18), Vector2(5, -18)]
+}
+
+[sub_resource type="Animation" id="Animation_m3pi4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(10, -9)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jvpd6"]
+_data = {
+"RESET": SubResource("Animation_m3pi4"),
+"being_throwed": SubResource("Animation_vtvo3")
+}
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_58qbs"]
 radius = 6.0
 height = 14.0
@@ -136,6 +173,21 @@ height = 42.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tx2pl"]
 height = 49.9734
+
+[sub_resource type="Animation" id="Animation_cth32"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_ru70h"]
 resource_name = "dropping"
@@ -153,7 +205,13 @@ tracks/0/keys = {
 "values": [Vector2(1412, 55), Vector2(1412, 68), Vector2(1412, 93), Vector2(1412, 116), Vector2(1412, 56), Vector2(1412, 72), Vector2(1412, 93), Vector2(1412, 116), Vector2(1412, 56)]
 }
 
-[sub_resource type="Animation" id="Animation_cth32"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tg66e"]
+_data = {
+"RESET": SubResource("Animation_cth32"),
+"dropping": SubResource("Animation_ru70h")
+}
+
+[sub_resource type="Animation" id="Animation_1mlbr"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -165,13 +223,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_tg66e"]
-_data = {
-"RESET": SubResource("Animation_cth32"),
-"dropping": SubResource("Animation_ru70h")
+"values": [Vector2(1412, 55)]
 }
 
 [sub_resource type="Animation" id="Animation_62ue4"]
@@ -190,7 +242,13 @@ tracks/0/keys = {
 "values": [Vector2(1426, 55), Vector2(1426, 68), Vector2(1426, 93), Vector2(1426, 116), Vector2(1426, 56), Vector2(1426, 72), Vector2(1426, 93), Vector2(1426, 116), Vector2(1426, 56)]
 }
 
-[sub_resource type="Animation" id="Animation_1mlbr"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dy3m3"]
+_data = {
+"RESET": SubResource("Animation_1mlbr"),
+"dropping": SubResource("Animation_62ue4")
+}
+
+[sub_resource type="Animation" id="Animation_hphbe"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -203,12 +261,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(1412, 55)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_dy3m3"]
-_data = {
-"RESET": SubResource("Animation_1mlbr"),
-"dropping": SubResource("Animation_62ue4")
 }
 
 [sub_resource type="Animation" id="Animation_68vsl"]
@@ -225,21 +277,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(1426, 55), Vector2(1426, 68), Vector2(1426, 93), Vector2(1426, 56), Vector2(1426, 72), Vector2(1426, 116), Vector2(1426, 56)]
-}
-
-[sub_resource type="Animation" id="Animation_hphbe"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1412, 55)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_42wab"]
@@ -298,7 +335,13 @@ zoom = Vector2(4, 4)
 limit_bottom = 300
 
 [node name="Bomba" parent="Player" instance=ExtResource("7_tq1t4")]
+visible = false
 position = Vector2(10, -9)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player/Bomba"]
+libraries = {
+"": SubResource("AnimationLibrary_jvpd6")
+}
 
 [node name="Bouncy Bee" parent="." instance=ExtResource("5_uv1xh")]
 position = Vector2(815, 110)
