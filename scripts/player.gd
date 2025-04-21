@@ -85,7 +85,6 @@ func _physics_process(delta: float) -> void:
 func _on_dancing_timer_timeout() -> void:
 	if is_punching:
 		return
-		
 	animated_sprite.play("dancing")
 
 func _on_state_toggle_movement(val: bool) -> void:
