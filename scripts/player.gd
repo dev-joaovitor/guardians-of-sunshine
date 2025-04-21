@@ -89,8 +89,10 @@ func _on_dancing_timer_timeout() -> void:
 	animated_sprite.play("dancing")
 
 func _on_state_toggle_movement(val: bool) -> void:
-	print("toglle: ", val)
 	can_move = val
 
 func _on_bouncy_bee_toggle_animation(val: bool) -> void:
+	can_move = not val
+
+func _on_hunny_bunny_toggle_animation(val: bool) -> void:
 	can_move = not val

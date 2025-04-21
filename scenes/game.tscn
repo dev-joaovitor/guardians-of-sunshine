@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://cdbsvss4t4iy"]
+[gd_scene load_steps=30 format=4 uid="uid://cdbsvss4t4iy"]
 
 [ext_resource type="Script" path="res://scripts/state.gd" id="1_oo50k"]
 [ext_resource type="PackedScene" uid="uid://byaog2sb1ani2" path="res://scenes/hud.tscn" id="1_os4tj"]
@@ -11,7 +11,10 @@
 [ext_resource type="PackedScene" uid="uid://bmjkvsrasmo4x" path="res://scenes/hunny_bunny.tscn" id="7_8pmj8"]
 [ext_resource type="PackedScene" uid="uid://dqej61m1ydl4t" path="res://scenes/killzone.tscn" id="9_jvlr2"]
 [ext_resource type="PackedScene" uid="uid://1uppc7u3y61m" path="res://scenes/invisible_barrier.tscn" id="10_2u5ns"]
+[ext_resource type="Texture2D" uid="uid://cn2m5kc8tu64j" path="res://assets/sprites/tiles/honey-drop-1.png" id="10_w48f5"]
 [ext_resource type="PackedScene" uid="uid://stsk8l5jegli" path="res://scenes/death_screen.tscn" id="11_4eejj"]
+[ext_resource type="Texture2D" uid="uid://by4yhhds1s5um" path="res://assets/sprites/tiles/honey-drop-2.png" id="11_y05pc"]
+[ext_resource type="Texture2D" uid="uid://cbrcnp28nkamu" path="res://assets/sprites/tiles/honey-drop-3.png" id="12_j71ld"]
 [ext_resource type="PackedScene" uid="uid://xvm6y8nq4btx" path="res://scenes/start_screen.tscn" id="12_te4jh"]
 [ext_resource type="PackedScene" uid="uid://cc1s2242j2j8k" path="res://scenes/trigger_animation.tscn" id="14_2gqj1"]
 
@@ -130,6 +133,9 @@ height = 14.0
 radius = 20.0
 height = 42.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tx2pl"]
+height = 49.9734
+
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_rrn6u"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_yesfp"]
@@ -172,9 +178,10 @@ shape = SubResource("SegmentShape2D_141wl")
 position = Vector2(115, 55)
 
 [node name="Player" parent="." instance=ExtResource("1_pfjed")]
-position = Vector2(1192, 121)
+position = Vector2(116, 90)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(1, -9)
 zoom = Vector2(4, 4)
 limit_bottom = 300
 
@@ -195,6 +202,27 @@ shape = SubResource("CapsuleShape2D_5w5sv")
 
 [node name="Hunny Bunny" parent="." instance=ExtResource("7_8pmj8")]
 position = Vector2(1373, 109)
+
+[node name="EnemyArea" parent="Hunny Bunny" instance=ExtResource("9_jvlr2")]
+
+[node name="BodyCollision" type="CollisionShape2D" parent="Hunny Bunny/EnemyArea"]
+position = Vector2(-1, 1)
+rotation = -0.610865
+shape = SubResource("CapsuleShape2D_tx2pl")
+
+[node name="Honey Drops" type="Node" parent="."]
+
+[node name="Honey Drop 1" type="Sprite2D" parent="Honey Drops"]
+position = Vector2(1398, 70)
+texture = ExtResource("10_w48f5")
+
+[node name="Honey Drop 2" type="Sprite2D" parent="Honey Drops"]
+position = Vector2(1400, 72)
+texture = ExtResource("11_y05pc")
+
+[node name="Honey Drop 3" type="Sprite2D" parent="Honey Drops"]
+position = Vector2(1413, 68)
+texture = ExtResource("12_j71ld")
 
 [node name="Killzone" parent="." instance=ExtResource("9_jvlr2")]
 
@@ -271,6 +299,9 @@ visible = false
 [connection signal="toggle_animation" from="Bouncy Bee" to="Player" method="_on_bouncy_bee_toggle_animation"]
 [connection signal="got_killed" from="Bouncy Bee/EnemyArea" to="Bouncy Bee" method="_on_enemy_area_got_killed"]
 [connection signal="kill" from="Bouncy Bee/EnemyArea" to="State" method="_on_enemy_area_kill"]
+[connection signal="toggle_animation" from="Hunny Bunny" to="Player" method="_on_hunny_bunny_toggle_animation"]
+[connection signal="got_killed" from="Hunny Bunny/EnemyArea" to="Hunny Bunny" method="_on_enemy_area_got_killed"]
+[connection signal="kill" from="Hunny Bunny/EnemyArea" to="State" method="_on_killzone_kill"]
 [connection signal="kill" from="Killzone" to="State" method="_on_killzone_kill"]
 [connection signal="body_entered" from="Triggers/PlayerTriggerBouncyBeeAnimation" to="Bouncy Bee" method="_on_trigger_animation_body_entered"]
 [connection signal="area_entered" from="Triggers/EnemyTriggerBouncyBeeAnimation" to="Bouncy Bee" method="_on_enemy_trigger_animation_area_entered"]
